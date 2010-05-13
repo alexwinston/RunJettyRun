@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>runjettyrun</artifactId>
+    <groupId>runjettyrun</groupId>
+    <version>${runjettyrun-version}</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>runjettyrun</groupId>
+  <artifactId>runjettyrun-feature</artifactId>
+  <packaging>jar</packaging>
+  <version>${runjettyrun-version}</version>
+  <name>Run Jetty Run Features</name>
+  <url>http://maven.apache.org</url>
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+  <plugins>
+    <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-jar-plugin</artifactId>
+	<configuration>
+          <outputDirectory>../site/update/features</outputDirectory>
+	</configuration>
+    </plugin>
+  </plugins>
+  </build>
+</project>
