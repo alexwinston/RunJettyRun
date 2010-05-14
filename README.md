@@ -1,9 +1,9 @@
 RunJettyRun: Jetty Eclipse Run Configuration Plugin
 ===================================================
 
-This new version of RunJettyRun is forked from the orginal work done at http://code.google.com/p/run-jetty-run/. Unfortunately this version has the limitation of only allowing configuration from the plugin dialog. This new version now supports the ability to supply a VM Argument to specify a jetty.xml configuration file in addition to some other small enhancement.
+This new version of RunJettyRun is forked from the orginal work done at http://code.google.com/p/run-jetty-run/. Unfortunately this version has the limitation of only allowing configuration from the plugin dialog. This new version now supports the ability to supply a VM Argument to specify a jetty.xml configuration file in addition to some other small enhancements.
 
-This version has only been tested on 3.5.2. Feedback on whether this works on older versions of Eclipse is encouraged.
+This version has only been tested on Eclipse 3.5.2. Feedback on whether this works on older versions of Eclipse is encouraged.
 
 Features
 ---------
