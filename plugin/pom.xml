@@ -276,6 +276,12 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+			<groupId>ant</groupId>
+			<artifactId>ant</artifactId>
+			<version>${ant-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
       		<groupId>org.mortbay.jetty</groupId>
       		<artifactId>jsp-2.1</artifactId>
       		<version>${jetty-version}</version>
@@ -289,6 +295,12 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<resources>
+      			<resource>
+        			<directory>src/main/resources</directory>
+        			<filtering>true</filtering>
+                        </resource>
+                </resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -307,8 +319,9 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
+					<finalName>${project.groupId}_${runjettyrun-version}</finalName>
 					<archive>
-						<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+						<manifestFile>target/classes/META-INF/MANIFEST.MF</manifestFile>
 						<addMavenDescriptor>false</addMavenDescriptor> 
 					</archive>
 					<outputDirectory>../site/update/plugins</outputDirectory>
@@ -325,7 +338,7 @@
 							<goal>copy-dependencies</goal>
 						</goals>
 						<configuration>
-							<includeGroupIds>runjettyrun,org.mortbay.jetty</includeGroupIds>
+							<includeGroupIds>runjettyrun,org.mortbay.jetty,ant</includeGroupIds>
 							<outputDirectory>target/classes/lib</outputDirectory>
 						</configuration>
 					</execution>

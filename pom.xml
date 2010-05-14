@@ -9,7 +9,8 @@
     <packaging>pom</packaging>
 
     <properties>
-        <runjettyrun-version>1.2</runjettyrun-version>
+        <runjettyrun-version>1.2.0</runjettyrun-version>
+        <ant-version>1.6.5</ant-version>
         <jetty-version>6.1.14</jetty-version>
     </properties>
     <version>${runjettyrun-version}</version>

@@ -72,7 +72,8 @@ public class Plugin extends AbstractUIPlugin {
   public static final String ATTR_PWD = Plugin.PLUGIN_ID + ".PWD_ATTR";
 
   /** used to calculate the jars to include. */
-  public static final String JETTY_VERSION = "6.1.6";
+  public static final String ANT_VERSION = "1.6.5";
+  public static final String JETTY_VERSION = "6.1.14";
 
   // The shared instance
   private static Plugin plugin;

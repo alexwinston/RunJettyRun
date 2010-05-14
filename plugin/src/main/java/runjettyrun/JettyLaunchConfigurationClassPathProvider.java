@@ -76,7 +76,9 @@ public class JettyLaunchConfigurationClassPathProvider extends
     Bundle bundle = Plugin.getDefault().getBundle();
     URL installUrl = bundle.getEntry("/");
 
-    addRelativeArchiveEntry(entries, installUrl, "run-jetty-run-bootstrap");
+    addRelativeArchiveEntry(entries, installUrl, "runjettyrun-bootstrap");
+    addRelativeArchiveEntry(entries, installUrl, "ant-"
+        + Plugin.ANT_VERSION);
     addRelativeArchiveEntry(entries, installUrl, "jetty-"
         + Plugin.JETTY_VERSION);
     addRelativeArchiveEntry(entries, installUrl, "jetty-util-"
@@ -85,9 +87,11 @@ public class JettyLaunchConfigurationClassPathProvider extends
         + Plugin.JETTY_VERSION);
     addRelativeArchiveEntry(entries, installUrl, "servlet-api-2.5-"
         + Plugin.JETTY_VERSION);
-    addRelativeArchiveEntry(entries, installUrl, "jsp-api-2.1");
-    addRelativeArchiveEntry(entries, installUrl, "jsp-2.1");
-    addRelativeArchiveEntry(entries, installUrl, "core-3.1.1");
+    addRelativeArchiveEntry(entries, installUrl, "jsp-api-2.1-"
+        + Plugin.JETTY_VERSION);
+    addRelativeArchiveEntry(entries, installUrl, "jsp-2.1-"
+        + Plugin.JETTY_VERSION);
+    //addRelativeArchiveEntry(entries, installUrl, "core-3.1.1");
 
     return entries.toArray(new IRuntimeClasspathEntry[entries.size()]);
   }
