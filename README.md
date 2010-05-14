@@ -38,6 +38,8 @@ In order for this version of RunJettyRun to work correctly the jetty.xml file mu
 
 The "classLoader" is now required to be injected into the WebAppContext in order to pickup the project classpath in Eclipse. I imagine there might be a better way to do this but it was the best I could do for this first version.  Any thoughts are welcome on how this could be improved.
 
+* Take special note of the fact that the "Ref id" must match the "New id" for the WebAppContext.
+
 Notes
 -----
 The Project and Web Application properties on the Run Configuration dialog are still required to have a value.  Currently they are ignored and the next release will remove these unused properties and replace them with a single option to specify the jetty.xml file.
