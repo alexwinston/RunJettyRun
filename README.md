@@ -40,6 +40,10 @@ The "classLoader" is now required to be injected into the WebAppContext in order
 
 * Take special note of the fact that the "Ref id" must match the "New id" for the WebAppContext.
 
+Building
+--------
+RunJettyRun uses Maven to build the plugin.  Running "mvn package" from the root should build the bootstrap and feature projects and subsequently build the plugin and copy the jar to the site/update/plugin directory.
+
 Notes
 -----
 The Project and Web Application properties on the Run Configuration dialog are still required to have a value.  Currently they are ignored and the next release will remove these unused properties and replace them with a single option to specify the jetty.xml file.
