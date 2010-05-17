@@ -9,13 +9,13 @@ Features
 ---------
 - Rebuilt to use Maven2 and eliminated external dependencies
 - Supply jetty.xml file via configuration dialog
-- New update site hosted on GitHub for this new fork
+- New update site hosted on GitHub
 
 Quick Start
 ------------
 Simply use Eclipse's update manager (Help -> Install New Software... -> Add... to add a remote site and point it to http://alexwinston.github.com/RunJettyRun/update. Click finish, select the plugin (just one choice) and finish again.
 
-Open "Run Configurations" and add a new "Jetty Webapp". Click "Browse" to locate a jetty.xml file on the filesystem or simply type the name of the jett.xml file for the current project. By default the plugin will look in the project root directory if a path is not specified.
+Open "Run Configurations" and add a new "Jetty Webapp". Click "Browse" to locate a jetty.xml file on the filesystem or simply type the name of the jetty.xml file for the current project. By default the plugin will look in the project root directory if a path is not specified.
 
 In order for this version of RunJettyRun to work correctly with "Maven Dependencies" the jetty.xml file must also set the classLoader in the WebAppContext similar to the example below.
 
