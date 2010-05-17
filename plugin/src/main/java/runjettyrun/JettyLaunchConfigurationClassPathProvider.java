@@ -26,17 +26,12 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.debug.core.ILaunchConfiguration;
-import org.eclipse.jdt.core.IJavaModel;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
 import org.eclipse.jdt.launching.IRuntimeClasspathEntry;
 import org.eclipse.jdt.launching.JavaRuntime;
@@ -57,7 +52,7 @@ public class JettyLaunchConfigurationClassPathProvider extends
     boolean useDefault = configuration.getAttribute(
         IJavaLaunchConfigurationConstants.ATTR_DEFAULT_CLASSPATH, true);
     if (useDefault) {
-      classpath = filterWebInfLibs(classpath, configuration);
+      //classpath = filterWebInfLibs(classpath, configuration);
       classpath = addJettyAndBootstrap(classpath, configuration);
 
     } else {
@@ -125,61 +120,6 @@ public class JettyLaunchConfigurationClassPathProvider extends
     }
   }
 
-  private IRuntimeClasspathEntry[] filterWebInfLibs(
-      IRuntimeClasspathEntry[] defaults, ILaunchConfiguration configuration) {
-
-    IJavaModel javaModel = JavaCore.create(ResourcesPlugin.getWorkspace()
-        .getRoot());
-    String projectName = null;
-    String webAppDirName = null;
-    try {
-      projectName = configuration.getAttribute(
-          IJavaLaunchConfigurationConstants.ATTR_PROJECT_NAME, "");
-      webAppDirName = configuration.getAttribute(Plugin.ATTR_WEBAPPDIR, "");
-    } catch (CoreException e) {
-      Plugin.logError(e);
-    }
-
-    if (projectName == null || projectName.trim().equals("")
-        || webAppDirName == null || webAppDirName.trim().equals("")) {
-      return defaults;
-    }
-
-    IJavaProject project = javaModel.getJavaProject(projectName);
-    if (project == null) {
-      return defaults;
-    }
-
-    // this should be fine since the plugin checks whether WEB-INF exists
-    IFolder webInfDir = project.getProject().getFolder(new Path(webAppDirName))
-        .getFolder("WEB-INF");
-    if (webInfDir == null || !webInfDir.exists()) {
-      return defaults;
-    }
-    IFolder lib = webInfDir.getFolder("lib");
-    if (lib == null || !lib.exists()) {
-      return defaults;
-    }
-
-    // ok, so we have a WEB-INF/lib dir, which means that we should filter
-    // out the entries in there since if the user wants those entries, they
-    // should be part of the project definition already
-    List<IRuntimeClasspathEntry> keep = new ArrayList<IRuntimeClasspathEntry>();
-    for (int i = 0; i < defaults.length; i++) {
-      if (defaults[i].getType() != IRuntimeClasspathEntry.ARCHIVE) {
-        keep.add(defaults[i]);
-        continue;
-      }
-      IResource resource = defaults[i].getResource();
-      if (resource != null && !resource.getParent().equals(lib)) {
-        keep.add(defaults[i]);
-        continue;
-      }
-    }
-
-    return keep.toArray(new IRuntimeClasspathEntry[keep.size()]);
-  }
-
   /*
    * James Synge: overriding so that I can block the inclusion of external
    * libraries that should be found in WEB-INF/lib, and shouldn't be on the
@@ -209,25 +149,6 @@ public class JettyLaunchConfigurationClassPathProvider extends
       IRuntimeClasspathEntry[] resolved = JavaRuntime
           .resolveRuntimeClasspathEntry(entry, configuration);
       all.addAll(Arrays.asList(resolved));
-
-      // for (int j = 0; j < resolved.length; j++) {
-      // IRuntimeClasspathEntry resolvedEntry = resolved[j];
-      // if (isProject)
-      // {
-      // String location = resolvedEntry.getLocation();
-      // IResource resource = resolvedEntry.getResource();
-      // int classpathProperty = resolvedEntry.getClasspathProperty();
-      // if (classpathProperty == IRuntimeClasspathEntry.USER_CLASSES)
-      // {
-      // if (location != null)
-      // {
-      // if (resource == null)
-      // continue; // External library; skip it.
-      // }
-      // }
-      // }
-      // all.add(resolvedEntry);
-      // }
     }
 
     IRuntimeClasspathEntry[] resolvedClasspath = all

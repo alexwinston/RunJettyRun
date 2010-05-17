@@ -33,7 +33,7 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle.
  * 
- * @author hillenius
+ * @author hillenius, Alex Winston
  */
 public class Plugin extends AbstractUIPlugin {
   /** The icon for the RunJettyRunWebApp launch type*/
@@ -44,32 +44,11 @@ public class Plugin extends AbstractUIPlugin {
 
   private static final String JETTY_ICON = PLUGIN_ID + ".jettyIcon";
 
-  /** configuration attribute for the full class name of the bootstrap class. */
+  /** Configuration attribute for the full class name of the bootstrap class. */
   public static final String BOOTSTRAP_CLASS_NAME = "runjettyrun.Bootstrap";
 
-  /** configuration attribute for context of the web application. */
-  public static final String ATTR_CONTEXT = Plugin.PLUGIN_ID + ".CONTEXT_ATTR";
-
-  /** configuration attribute for the web application directory. */
-  public static final String ATTR_WEBAPPDIR = Plugin.PLUGIN_ID
-      + ".WEBAPPDIR_ATTR";
-
-  /** configuration attribute for the port to run Jetty on. */
-  public static final String ATTR_PORT = Plugin.PLUGIN_ID + ".PORT_ATTR";
-
-  /** configuration attribute for the SSL port to run Jetty on. */
-  public static final String ATTR_SSL_PORT = Plugin.PLUGIN_ID
-      + ".SSL_PORT_ATTR";
-
-  /** configuration attribute for the location of the keystore. */
-  public static final String ATTR_KEYSTORE = Plugin.PLUGIN_ID
-      + ".KEYSTORE_ATTR";
-
-  /** configuration attribute for the SSL port to run Jetty on. */
-  public static final String ATTR_KEY_PWD = Plugin.PLUGIN_ID + ".KEY_PWD_ATTR";
-
-  /** configuration attribute for the SSL port to run Jetty on. */
-  public static final String ATTR_PWD = Plugin.PLUGIN_ID + ".PWD_ATTR";
+  /** Configuration attribute for context of the jetty web xml. */
+  public static final String ATTR_JETTY_XML = Plugin.PLUGIN_ID + ".JETTY_XML_ATTR";
 
   /** used to calculate the jars to include. */
   public static final String ANT_VERSION = "1.6.5";

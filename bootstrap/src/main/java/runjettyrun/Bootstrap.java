@@ -40,11 +40,11 @@ public class Bootstrap {
    * @param args
    */
   public static void main(String[] args) throws Exception {
-    String xml = System.getProperty("xml");
+    String xml = System.getProperty("rjrxml");
 
     Server server = new Server();
     if (xml == null) {
-      throw new IllegalStateException("VM Argument -Dxml must be supplied for jetty.xml file");
+      throw new IllegalStateException("VM Argument -Drjrxml must be supplied for the jetty.xml file");
     }
 
     XmlConfiguration configuration = new XmlConfiguration(new FileInputStream(xml));

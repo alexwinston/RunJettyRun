@@ -156,20 +156,8 @@ public class JettyLaunchConfigurationType extends
 
     List<String> runtimeVmArgs = new ArrayList<String>();
 
-    addOptionalAttr(configuration, runtimeVmArgs, Plugin.ATTR_CONTEXT,
-        "context");
-    addOptionalAttr(configuration, runtimeVmArgs, Plugin.ATTR_WEBAPPDIR,
-        "webapp");
-
-    addOptionalAttr(configuration, runtimeVmArgs, Plugin.ATTR_PORT, "port");
-
-    addOptionalAttr(configuration, runtimeVmArgs, Plugin.ATTR_SSL_PORT,
-        "sslport");
-    addOptionalAttr(configuration, runtimeVmArgs, Plugin.ATTR_KEYSTORE,
-        "keystore");
-    addOptionalAttr(configuration, runtimeVmArgs, Plugin.ATTR_KEY_PWD,
-        "keypassword");
-    addOptionalAttr(configuration, runtimeVmArgs, Plugin.ATTR_PWD, "password");
+    addOptionalAttr(configuration, runtimeVmArgs, Plugin.ATTR_JETTY_XML,
+        "xml");
 
     return runtimeVmArgs;
   }
