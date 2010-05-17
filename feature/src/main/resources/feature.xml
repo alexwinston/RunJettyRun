@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="runjettyrun_feature"
+      label="Run Jetty Run Feature"
+      version="${runjettyrun-version}"
+      provider-name="http://github.com/alexwinston/RunJettyRun">
+
+   <description url="http://github.com/alexwinston/RunJettyRun">
+      Run web applications in Eclipse using the Jetty distribution (Jetty 6.1.14) embedded in this plug-in.
+   </description>
+
+   <copyright>
+      Copyright 2007 Eelco Hillenius
+Copyright 2009 James Synge
+Copyright 2010 Alex Winston
+   </copyright>
+
+   <license url="http://www.apache.org/licenses/LICENSE-2.0">
+      Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+http://www.apache.org/licenses/LICENSE-2.0 Unless required by
+applicable law or agreed to in writing, software distributed
+under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+or implied. See the License for the specific language governing
+permissions and limitations under the License.
+   </license>
+
+   <url>
+      <update label="RunJettyRun Update Site" url="http://alexwinston.github.com/RunJettyRun/update/"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.debug.core"/>
+      <import plugin="org.eclipse.debug.ui"/>
+      <import plugin="org.eclipse.jdt.debug"/>
+      <import plugin="org.eclipse.jdt.debug.ui"/>
+      <import plugin="org.eclipse.jdt.launching"/>
+      <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.jdt.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+   </requires>
+
+   <plugin
+         id="runjettyrun"
+         download-size="0"
+         install-size="0"
+         version="${runjettyrun-version}"
+         unpack="false"/>
+
+</feature>

@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+    http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>runjettyrun</groupId>
+    <artifactId>runjettyrun</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <runjettyrun-version>1.2.1</runjettyrun-version>
+        <ant-version>1.6.5</ant-version>
+        <jetty-version>6.1.14</jetty-version>
+    </properties>
+    <version>${runjettyrun-version}</version>
+
+    <name>Run Jetty Run</name>
+ 
+    <repositories>
+	<repository>
+	  <id>codehaus-replease-repo</id>
+	  <name>Codehaus Release Repo</name>
+	  <url>http://repository.codehaus.org</url>
+	</repository>
+    </repositories>
+
+    <modules>
+        <module>bootstrap</module>
+        <module>plugin</module>
+        <module>feature</module>
+    </modules>
+</project>
+
