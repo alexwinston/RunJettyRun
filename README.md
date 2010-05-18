@@ -30,7 +30,7 @@ Jetty6
 	<!-- ================================================== -->
 	<Item>
 		<New id="testWebAppContext" class="org.mortbay.jetty.webapp.WebAppContext">
-			<Set name="contextPath">/MyHealth</Set>
+			<Set name="contextPath">/Test</Set>
 			<Set name="war">src/main/webapp</Set>
 			<Set name="classLoader">
 				<New id="webAppClassloader" class="runjettyrun.ProjectClassLoader">
@@ -48,7 +48,7 @@ Jetty7
 	<!-- ================================================== -->
 	<Item>
 		<New id="testWebAppContext" class="org.eclipse.jetty.webapp.WebAppContext">
-			<Set name="contextPath">/MyHealth</Set>
+			<Set name="contextPath">/Test</Set>
 			<Set name="war">src/main/webapp</Set>
 			<Set name="classLoader">
 				<New id="webAppClassloader" class="runjettyrun.ProjectClassLoader">
