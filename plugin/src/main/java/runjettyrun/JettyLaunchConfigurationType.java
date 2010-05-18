@@ -45,7 +45,7 @@ import org.eclipse.jdt.launching.VMRunnerConfiguration;
  * Launch configuration type for Jetty. Based on
  * org.eclipse.jdt.launching.JavaLaunchDelegate.
  * 
- * @author hillenius
+ * @author hillenius, Alex Winston
  */
 public class JettyLaunchConfigurationType extends
     AbstractJavaLaunchConfigurationDelegate {
@@ -156,6 +156,8 @@ public class JettyLaunchConfigurationType extends
 
     List<String> runtimeVmArgs = new ArrayList<String>();
 
+    addOptionalAttr(configuration, runtimeVmArgs, Plugin.ATTR_JETTY_VERSION,
+        "version");
     addOptionalAttr(configuration, runtimeVmArgs, Plugin.ATTR_JETTY_XML,
         "xml");
 
@@ -169,6 +171,7 @@ public class JettyLaunchConfigurationType extends
     if (value.length() == 0)
       return;
     String arg = "-Drjr" + argName + "=" + value;
+    System.out.println(arg);
     runtimeVmArgs.add(arg);
     return;
   }
