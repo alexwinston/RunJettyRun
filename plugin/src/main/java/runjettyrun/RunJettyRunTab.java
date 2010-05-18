@@ -19,10 +19,6 @@ package runjettyrun;
 
 import static org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants.ATTR_PROJECT_NAME;
 
-import java.text.MessageFormat;
-
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
@@ -32,6 +28,7 @@ import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Font;
@@ -39,6 +36,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
@@ -52,13 +50,13 @@ import org.eclipse.swt.widgets.Text;
 public class RunJettyRunTab extends JavaLaunchTab {
 
   private static abstract class ButtonListener implements SelectionListener {
-
     public void widgetDefaultSelected(SelectionEvent e) {
     }
   }
 
-  private Text fXmlText;
-  private Button fXmlButton;
+  private Combo fJettyVersionCombo;
+  private Text fJettyXmlText;
+  private Button fJettyXmlButton;
 
   /**
    * Construct.
@@ -97,22 +95,32 @@ public class RunJettyRunTab extends JavaLaunchTab {
     GridData gd = createHFillGridData();
     group.setLayoutData(gd);
     GridLayout layout = new GridLayout();
-    layout.numColumns = 2;
+    layout.numColumns = 3;
     group.setLayout(layout);
     group.setFont(font);
-    fXmlText = new Text(group, SWT.SINGLE | SWT.BORDER);
+    
+    fJettyVersionCombo = new Combo(group, SWT.DROP_DOWN | SWT.READ_ONLY | SWT.BORDER);
+    fJettyVersionCombo.add(Plugin.ATTR_JETTY6);
+    fJettyVersionCombo.add(Plugin.ATTR_JETTY7);
+    fJettyVersionCombo.addSelectionListener(new SelectionAdapter() {
+        public void widgetSelected(SelectionEvent e) {
+        	System.out.println(fJettyVersionCombo.getText());
+        	updateLaunchConfigurationDialog();
+        }
+    });
+    
+    fJettyXmlText = new Text(group, SWT.SINGLE | SWT.BORDER);
     gd = createHFillGridData();
-    fXmlText.setLayoutData(gd);
-    fXmlText.setFont(font);
-    fXmlText.addModifyListener(new ModifyListener() {
-
+    fJettyXmlText.setLayoutData(gd);
+    fJettyXmlText.setFont(font);
+    fJettyXmlText.addModifyListener(new ModifyListener() {
       public void modifyText(ModifyEvent e) {
         updateLaunchConfigurationDialog();
       }
     });
-    fXmlButton = createPushButton(group, "&Browse...", null);
-    fXmlButton.addSelectionListener(new ButtonListener() {
-
+    
+    fJettyXmlButton = createPushButton(group, "&Browse...", null);
+    fJettyXmlButton.addSelectionListener(new ButtonListener() {
       public void widgetSelected(SelectionEvent e) {
         handleProjectButtonSelected();
       }
@@ -143,7 +151,10 @@ public class RunJettyRunTab extends JavaLaunchTab {
   public void initializeFrom(ILaunchConfiguration configuration) {
     super.initializeFrom(configuration);
     try {
-      fXmlText.setText(configuration.getAttribute(Plugin.ATTR_JETTY_XML, ""));
+    	fJettyVersionCombo.select(
+    			fJettyVersionCombo.indexOf(configuration.getAttribute(
+    					Plugin.ATTR_JETTY_VERSION, Plugin.ATTR_JETTY6)));
+    	fJettyXmlText.setText(configuration.getAttribute(Plugin.ATTR_JETTY_XML, ""));
     } catch (CoreException e) {
       Plugin.logError(e);
     }
@@ -153,7 +164,7 @@ public class RunJettyRunTab extends JavaLaunchTab {
     setErrorMessage(null);
     setMessage(null);
 
-    String xmlFile = fXmlText.getText().trim();
+    String xmlFile = fJettyXmlText.getText().trim();
     if (xmlFile.length() == 0) {
         setErrorMessage("No Jetty Xml Configuration File selected");
         return false;
@@ -163,7 +174,8 @@ public class RunJettyRunTab extends JavaLaunchTab {
   }
 
   public void performApply(ILaunchConfigurationWorkingCopy configuration) {
-    configuration.setAttribute(Plugin.ATTR_JETTY_XML, fXmlText.getText());
+    configuration.setAttribute(Plugin.ATTR_JETTY_VERSION, fJettyVersionCombo.getText());
+    configuration.setAttribute(Plugin.ATTR_JETTY_XML, fJettyXmlText.getText());
 
     return;
   }
@@ -185,8 +197,8 @@ public class RunJettyRunTab extends JavaLaunchTab {
     // added to the run time class path. Value has to be the same as the one
     // defined for the extension point
     configuration.setAttribute(
-        IJavaLaunchConfigurationConstants.ATTR_CLASSPATH_PROVIDER,
-    "RunJettyRunWebAppClassPathProvider");
+    		IJavaLaunchConfigurationConstants.ATTR_CLASSPATH_PROVIDER,
+    		"RunJettyRunWebAppClassPathProvider");
 
     // get the name for this launch configuration
     String launchConfigName = "";
@@ -205,6 +217,7 @@ public class RunJettyRunTab extends JavaLaunchTab {
     launchConfigName = getLaunchConfigurationDialog().generateName(
         launchConfigName);
     configuration.rename(launchConfigName); // and rename the config
+    configuration.setAttribute(Plugin.ATTR_JETTY_VERSION, Plugin.ATTR_JETTY6);
     configuration.setAttribute(Plugin.ATTR_JETTY_XML, "");
 
     return;
@@ -215,6 +228,6 @@ public class RunJettyRunTab extends JavaLaunchTab {
     dialog.setText("Choose a jetty.xml file");
     String res = dialog.open();
     if (res != null)
-      fXmlText.setText(res);
+      fJettyXmlText.setText(res);
   }
 }

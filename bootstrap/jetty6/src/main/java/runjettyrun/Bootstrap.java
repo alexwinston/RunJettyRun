@@ -40,13 +40,16 @@ public class Bootstrap {
    * @param args
    */
   public static void main(String[] args) throws Exception {
+    String version = System.getProperty("rjrversion");
     String xml = System.getProperty("rjrxml");
 
-    Server server = new Server();
-    if (xml == null) {
+    if (version == null)
+      throw new IllegalStateException("VM Argument -Drjrversion must be supplied");
+    if (xml == null)
       throw new IllegalStateException("VM Argument -Drjrxml must be supplied for the jetty.xml file");
-    }
 
+    Server server = new Server();
+    
     XmlConfiguration configuration = new XmlConfiguration(new FileInputStream(xml));
     configuration.configure(server);
 
@@ -62,6 +65,7 @@ public class Bootstrap {
       e.printStackTrace();
       System.exit(100);
     }
+    
     return;
   }
 }

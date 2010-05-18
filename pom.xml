@@ -9,9 +9,13 @@
     <packaging>pom</packaging>
 
     <properties>
-        <runjettyrun-version>1.2.1</runjettyrun-version>
+        <runjettyrun-version>1.2.2</runjettyrun-version>
         <ant-version>1.6.5</ant-version>
-        <jetty-version>6.1.14</jetty-version>
+        <servlet-version>2.5</servlet-version>
+        <jsp-version>2.1</jsp-version>
+        <jetty6-version>6.1.14</jetty6-version>
+        <jetty7-version>7.0.1.v20091125</jetty7-version>
+        <!--jetty7-version>7.1.0.v20100505</jetty7-version-->
     </properties>
     <version>${runjettyrun-version}</version>
 
@@ -26,7 +30,8 @@
     </repositories>
 
     <modules>
-        <module>bootstrap</module>
+        <module>bootstrap/jetty6</module>
+        <module>bootstrap/jetty7</module>
         <module>plugin</module>
         <module>feature</module>
     </modules>

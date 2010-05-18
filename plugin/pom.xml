@@ -21,11 +21,6 @@
   			<name>Maven Eclipse Repo</name>
       		<url>http://repo2.maven.org/eclipse</url>
 		</repository>
-		<repository>
-  			<id>codehaus-repo</id>
-  			<name>Codehaus Repo</name>
-  			<url>http://repository.codehaus.org</url>
-		</repository>
 	</repositories>
 	<dependencyManagement>
 		<dependencies>
@@ -266,14 +261,20 @@
 		</dependency>
 		<dependency>
 			<groupId>runjettyrun</groupId>
-			<artifactId>runjettyrun-bootstrap</artifactId>
+			<artifactId>runjettyrun-bootstrap-jetty6</artifactId>
 			<version>${runjettyrun-version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mortbay.jetty</groupId>
 			<artifactId>jetty</artifactId>
-			<version>${jetty-version}</version>
+			<version>${jetty6-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jsp-${jsp-version}</artifactId>
+			<version>${jetty6-version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -283,17 +284,23 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-      		<groupId>org.mortbay.jetty</groupId>
-      		<artifactId>jsp-2.1</artifactId>
-      		<version>${jetty-version}</version>
-    	  	<scope>runtime</scope>
-    	</dependency> 
-		<dependency>
-			<groupId>org.mortbay.jetty</groupId>
-			<artifactId>jsp-api-2.1</artifactId>
-			<version>${jetty-version}</version>
+			<groupId>runjettyrun</groupId>
+			<artifactId>runjettyrun-bootstrap-jetty7</artifactId>
+			<version>${runjettyrun-version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-jmx</artifactId>
+			<version>${jetty7-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<!--dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-jsp-${jsp-version}</artifactId>
+			<version>${jetty7-version}</version>
+			<scope>runtime</scope>
+		</dependency-->
 	</dependencies>
 	<build>
 		<resources>
@@ -339,7 +346,7 @@
 							<goal>copy-dependencies</goal>
 						</goals>
 						<configuration>
-							<includeGroupIds>runjettyrun,org.mortbay.jetty,ant</includeGroupIds>
+							<includeGroupIds>runjettyrun,org.mortbay.jetty,org.eclipse.jetty,ant</includeGroupIds>
 							<outputDirectory>target/classes/lib</outputDirectory>
 						</configuration>
 					</execution>

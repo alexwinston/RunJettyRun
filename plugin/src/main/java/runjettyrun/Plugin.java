@@ -36,74 +36,81 @@ import org.osgi.framework.BundleContext;
  * @author hillenius, Alex Winston
  */
 public class Plugin extends AbstractUIPlugin {
-  /** The icon for the RunJettyRunWebApp launch type*/
-  private static final String JETTY_ICON_PATH = "/icons/jetty.gif";
+	/** The icon for the RunJettyRunWebApp launch type */
+	private static final String JETTY_ICON_PATH = "/icons/jetty.gif";
 
-  /** The plug-in ID. */
-  public static final String PLUGIN_ID = "run_jetty_run";
+	/** The plug-in ID. */
+	public static final String PLUGIN_ID = "run_jetty_run";
 
-  private static final String JETTY_ICON = PLUGIN_ID + ".jettyIcon";
+	private static final String JETTY_ICON = PLUGIN_ID + ".jettyIcon";
 
-  /** Configuration attribute for the full class name of the bootstrap class. */
-  public static final String BOOTSTRAP_CLASS_NAME = "runjettyrun.Bootstrap";
+	/** Configuration attribute for the full class name of the bootstrap class. */
+	public static final String BOOTSTRAP_CLASS_NAME = "runjettyrun.Bootstrap";
 
-  /** Configuration attribute for context of the jetty web xml. */
-  public static final String ATTR_JETTY_XML = Plugin.PLUGIN_ID + ".JETTY_XML_ATTR";
+	/** Configuration attributes for jetty version and xml. */
+	public static final String ATTR_JETTY_VERSION = Plugin.PLUGIN_ID + ".JETTY_VERSION_ATTR";
+	public static final String ATTR_JETTY6 = "Jetty 6";
+	public static final String ATTR_JETTY7 = "Jetty 7";
+	public static final String ATTR_JETTY_XML = Plugin.PLUGIN_ID + ".JETTY_XML_ATTR";
 
-  /** used to calculate the jars to include. */
-  public static final String ANT_VERSION = "1.6.5";
-  public static final String JETTY_VERSION = "6.1.14";
+	/** Used to calculate the jars to include. */
+	public static final String ANT_VERSION = "1.6.5";
+	public static final String SERVLET_VERSION = "2.5";
+	public static final String JSP_VERSION = "2.1";
+	public static final String JETTY6_VERSION = "6.1.14";
+	public static final String JETTY7_VERSION = "7.0.1.v20091125"; //"7.1.0.v20100505";
 
-  // The shared instance
-  private static Plugin plugin;
+	// The shared instance
+	private static Plugin plugin;
 
-  public Plugin() {
-  }
+	public Plugin() {
+	}
 
-  public void start(BundleContext context) throws Exception {
-    super.start(context);
-    plugin = this;
-  }
+	public void start(BundleContext context) throws Exception {
+		super.start(context);
+		plugin = this;
+	}
 
-  public void stop(BundleContext context) throws Exception {
-    plugin = null;
-    super.stop(context);
-  }
+	public void stop(BundleContext context) throws Exception {
+		plugin = null;
+		super.stop(context);
+	}
 
-  public static Plugin getDefault() {
-    return plugin;
-  }
+	public static Plugin getDefault() {
+		return plugin;
+	}
 
-  @Override
-  protected void initializeImageRegistry(ImageRegistry reg) {
+	@Override
+	protected void initializeImageRegistry(ImageRegistry reg) {
 
-    URL imageURL = getBundle().getEntry(JETTY_ICON_PATH);
-    if (imageURL != null) {
-      ImageDescriptor descriptor = ImageDescriptor.createFromURL(imageURL);
-      reg.put(JETTY_ICON, descriptor);
-    } else {
-      logError("resource " + JETTY_ICON_PATH + " was not found");
-    }
-  }
+		URL imageURL = getBundle().getEntry(JETTY_ICON_PATH);
+		if (imageURL != null) {
+			ImageDescriptor descriptor = ImageDescriptor
+					.createFromURL(imageURL);
+			reg.put(JETTY_ICON, descriptor);
+		} else {
+			logError("resource " + JETTY_ICON_PATH + " was not found");
+		}
+	}
 
-  public static Image getJettyIcon() {
-    return plugin.getImageRegistry().get(JETTY_ICON);
-  }
+	public static Image getJettyIcon() {
+		return plugin.getImageRegistry().get(JETTY_ICON);
+	}
 
-  static public void logError(Exception e) {
-    ILog log = plugin.getLog();
-    StringWriter stringWriter = new StringWriter();
-    e.printStackTrace(new PrintWriter(stringWriter));
-    String msg = stringWriter.getBuffer().toString();
-    Status status = new Status(IStatus.ERROR, getDefault().getBundle()
-        .getSymbolicName(), IStatus.ERROR, msg, null);
-    log.log(status);
-  }
+	static public void logError(Exception e) {
+		ILog log = plugin.getLog();
+		StringWriter stringWriter = new StringWriter();
+		e.printStackTrace(new PrintWriter(stringWriter));
+		String msg = stringWriter.getBuffer().toString();
+		Status status = new Status(IStatus.ERROR, getDefault().getBundle()
+				.getSymbolicName(), IStatus.ERROR, msg, null);
+		log.log(status);
+	}
 
-  static public void logError(String msg) {
-    ILog log = plugin.getLog();
-    Status status = new Status(IStatus.ERROR, getDefault().getBundle()
-        .getSymbolicName(), IStatus.ERROR, msg + "\n", null);
-    log.log(status);
-  }
+	static public void logError(String msg) {
+		ILog log = plugin.getLog();
+		Status status = new Status(IStatus.ERROR, getDefault().getBundle()
+				.getSymbolicName(), IStatus.ERROR, msg + "\n", null);
+		log.log(status);
+	}
 }
