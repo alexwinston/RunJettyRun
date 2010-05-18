@@ -12,6 +12,10 @@ Features
 - Supply jetty.xml file via configuration dialog
 - New update site hosted on GitHub
 
+Update Site
+------------
+- [http://alexwinston.github.com/RunJettyRun/update](http://alexwinston.github.com/RunJettyRun/update)
+
 Quick Start
 ------------
 Simply use Eclipse's update manager (Help -> Install New Software... -> Add... to add a remote site and point it to http://alexwinston.github.com/RunJettyRun/update. Click finish, select the plugin (just one choice) and finish again.
