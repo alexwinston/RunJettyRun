@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <runjettyrun-version>1.2.2</runjettyrun-version>
+        <runjettyrun-version>1.2.3</runjettyrun-version>
         <ant-version>1.6.5</ant-version>
         <servlet-version>2.5</servlet-version>
         <jsp-version>2.1</jsp-version>
