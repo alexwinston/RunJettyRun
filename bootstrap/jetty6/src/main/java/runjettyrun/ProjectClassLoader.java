@@ -19,6 +19,8 @@ package runjettyrun;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.mortbay.jetty.webapp.WebAppClassLoader;
 import org.mortbay.jetty.webapp.WebAppContext;
@@ -42,6 +44,11 @@ public class ProjectClassLoader extends WebAppClassLoader {
     if (projectClassPath == null) {
       throw new IllegalStateException("VM Argument -Drjrclasspath must be set");
     }
+    String projectClassPathRegex = System.getProperty("rjrclasspathregex");
+    System.out.println("rjrclasspathregex: " + projectClassPathRegex);
+    if (projectClassPathRegex == null) {
+    	projectClassPathRegex = "NULL";
+    }
 
     /*
      * As reported in these bugs:
@@ -64,8 +71,13 @@ public class ProjectClassLoader extends WebAppClassLoader {
         index = length;
       if (index > start) {
         String entry = projectClassPath.substring(start, index);
-        System.err.println("ProjectClassLoader: entry="+entry);
-        super.addClassPath(entry);
+        
+		Pattern p = Pattern.compile(projectClassPathRegex);
+		Matcher m = p.matcher(entry);
+		if (!m.find()) {
+			System.err.println("ProjectClassLoader: entry="+entry);
+			super.addClassPath(entry);
+		}
       }
       start = index + 1;
     }
