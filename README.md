@@ -3,7 +3,7 @@ RunJettyRun: Jetty Eclipse Run Configuration Plugin
 
 This new version of RunJettyRun is forked from the orginal work done at http://code.google.com/p/run-jetty-run/. Unfortunately the old version has the limitation of only allowing configuration from the plugin dialog and only supporting Jetty6. This new version now supports the ability to supply a jetty.xml configuration file in addition to supporting both Jetty6 and Jetty7.
 
-This version has only been tested on Eclipse 3.5.2. Feedback on whether this works on older versions of Eclipse is encouraged.
+This version has been tested on Eclipse 3.5 - 3.6. Feedback on whether this works on older versions of Eclipse is encouraged.
 
 Features
 ---------
