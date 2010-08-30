@@ -21,6 +21,7 @@ import java.io.File;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -106,8 +107,11 @@ public class JettyLaunchConfigurationType extends
       }
 
       // Create VM configuration
+      ArrayList<String> fullClasspath = new ArrayList<String>();
+      fullClasspath.addAll(Arrays.asList(classpath));
+      fullClasspath.addAll(Arrays.asList(webAppClasspathArray));
       VMRunnerConfiguration runConfig = new VMRunnerConfiguration(mainTypeName,
-          classpath);
+          fullClasspath.toArray(new String[0]));
       runConfig.setProgramArguments(execArgs.getProgramArgumentsArray());
       runConfig.setEnvironment(envp);
 
