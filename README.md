@@ -22,48 +22,6 @@ Simply use Eclipse's update manager (Help -> Install New Software... -> Add... t
 
 Open "Run Configurations" and add a new "Jetty Webapp". Select between Jetty6 and Jetty7 and then click "Browse" to locate a jetty.xml file on the filesystem or simply type the name of the jetty.xml file for the current project. By default the plugin will look in the project root directory if a path is not specified.
 
-In order for this version of RunJettyRun to work correctly with "Maven Dependencies" the jetty.xml file must also set the classLoader in the WebAppContext similar to the example below.
-
-Jetty6
-	<!-- ================================================== -->
-	<!-- Configure a web application with web.xml           -->
-	<!-- ================================================== -->
-	<Item>
-		<New id="testWebAppContext" class="org.mortbay.jetty.webapp.WebAppContext">
-			<Set name="contextPath">/Test</Set>
-			<Set name="war">src/main/webapp</Set>
-			<Set name="classLoader">
-				<New id="webAppClassloader" class="runjettyrun.ProjectClassLoader">
-					<Arg>
-						<Ref id="testWebAppContext" />
-					</Arg>
-				</New>
-			</Set>
-		</New>
-	</Item>
-
-Jetty7
-	<!-- ================================================== -->
-	<!-- Configure a web application with web.xml           -->
-	<!-- ================================================== -->
-	<Item>
-		<New id="testWebAppContext" class="org.eclipse.jetty.webapp.WebAppContext">
-			<Set name="contextPath">/Test</Set>
-			<Set name="war">src/main/webapp</Set>
-			<Set name="classLoader">
-				<New id="webAppClassloader" class="runjettyrun.ProjectClassLoader">
-					<Arg>
-						<Ref id="testWebAppContext" />
-					</Arg>
-				</New>
-			</Set>
-		</New>
-	</Item>
-
-The "classLoader" is now required to be injected into the WebAppContext in order to pickup the project classpath in Eclipse. I imagine there might be a better way to do this but it was the best I could do for this first version.  Any thoughts are welcome on how this could be improved.
-
-* Take special note of the fact that the "Ref id" must match the "New id" for the WebAppContext.
-
 Building
 --------
 RunJettyRun uses Maven to build the plugin.  Running "mvn package" from the root should build the bootstrap and feature projects and subsequently build the plugin and copy the jar to the site/update/plugin directory.
