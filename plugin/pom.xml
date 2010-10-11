@@ -290,17 +290,11 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-jmx</artifactId>
-			<version>${jetty7-version}</version>
+			<groupId>runjettyrun</groupId>
+			<artifactId>runjettyrun-bootstrap-jetty8</artifactId>
+			<version>${runjettyrun-version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		<!--dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-jsp-${jsp-version}</artifactId>
-			<version>${jetty7-version}</version>
-			<scope>runtime</scope>
-		</dependency-->
 	</dependencies>
 	<build>
 		<resources>
@@ -346,7 +340,7 @@
 							<goal>copy-dependencies</goal>
 						</goals>
 						<configuration>
-							<includeGroupIds>runjettyrun,org.mortbay.jetty,org.eclipse.jetty,ant</includeGroupIds>
+							<includeGroupIds>runjettyrun,org.mortbay.jetty,ant</includeGroupIds>
 							<outputDirectory>target/classes/lib</outputDirectory>
 						</configuration>
 					</execution>

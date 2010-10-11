@@ -102,6 +102,7 @@ public class RunJettyRunTab extends JavaLaunchTab {
     fJettyVersionCombo = new Combo(group, SWT.DROP_DOWN | SWT.READ_ONLY | SWT.BORDER);
     fJettyVersionCombo.add(Plugin.ATTR_JETTY6);
     fJettyVersionCombo.add(Plugin.ATTR_JETTY7);
+    fJettyVersionCombo.add(Plugin.ATTR_JETTY8);
     fJettyVersionCombo.addSelectionListener(new SelectionAdapter() {
         public void widgetSelected(SelectionEvent e) {
         	System.out.println(fJettyVersionCombo.getText());

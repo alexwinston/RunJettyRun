@@ -51,14 +51,17 @@ public class Plugin extends AbstractUIPlugin {
 	public static final String ATTR_JETTY_VERSION = Plugin.PLUGIN_ID + ".JETTY_VERSION_ATTR";
 	public static final String ATTR_JETTY6 = "Jetty 6";
 	public static final String ATTR_JETTY7 = "Jetty 7";
+	public static final String ATTR_JETTY8 = "Jetty 8";
 	public static final String ATTR_JETTY_XML = Plugin.PLUGIN_ID + ".JETTY_XML_ATTR";
 
 	/** Used to calculate the jars to include. */
 	public static final String ANT_VERSION = "1.6.5";
 	public static final String SERVLET_VERSION = "2.5";
+	public static final String SERVLET_3_VERSION = "3.0.20100224";
 	public static final String JSP_VERSION = "2.1";
 	public static final String JETTY6_VERSION = "6.1.14";
 	public static final String JETTY7_VERSION = "7.0.1.v20091125"; //"7.1.0.v20100505";
+	public static final String JETTY8_VERSION = "8.0.0.M1";
 
 	// The shared instance
 	private static Plugin plugin;

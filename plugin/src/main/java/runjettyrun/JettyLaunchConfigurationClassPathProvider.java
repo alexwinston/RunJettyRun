@@ -71,20 +71,25 @@ public class JettyLaunchConfigurationClassPathProvider extends
     Bundle bundle = Plugin.getDefault().getBundle();
     URL installUrl = bundle.getEntry("/");
 
-    addRelativeArchiveEntry(entries, installUrl, "ant-"
-        + Plugin.ANT_VERSION);
-    addRelativeArchiveEntry(entries, installUrl, "servlet-api-"
-        + Plugin.SERVLET_VERSION + "-" + Plugin.JETTY6_VERSION);
-    addRelativeArchiveEntry(entries, installUrl, "jsp-api-"
-        + Plugin.JSP_VERSION + "-" + Plugin.JETTY6_VERSION);
-    addRelativeArchiveEntry(entries, installUrl, "jsp-"
-        + Plugin.JSP_VERSION + "-" + Plugin.JETTY6_VERSION);
-	addRelativeArchiveEntry(entries, installUrl, "jetty-util-"
-	    + Plugin.JETTY6_VERSION);
-    
     String version = config.getAttribute(Plugin.ATTR_JETTY_VERSION, Plugin.ATTR_JETTY6);
     System.out.println("ATTR_JETTY_VERSION " + version);
     
+    addRelativeArchiveEntry(entries, installUrl, "ant-"
+	        + Plugin.ANT_VERSION);
+    addRelativeArchiveEntry(entries, installUrl, "jsp-api-"
+	        + Plugin.JSP_VERSION + "-" + Plugin.JETTY6_VERSION);
+	addRelativeArchiveEntry(entries, installUrl, "jsp-"
+	        + Plugin.JSP_VERSION + "-" + Plugin.JETTY6_VERSION);
+	addRelativeArchiveEntry(entries, installUrl, "jetty-util-"
+		    + Plugin.JETTY6_VERSION);
+	    
+    // Common archives for Jetty 6 and Jetty 7
+    if (Plugin.ATTR_JETTY6.equals(version) || Plugin.ATTR_JETTY7.equals(version)) {
+	    addRelativeArchiveEntry(entries, installUrl, "servlet-api-"
+	        + Plugin.SERVLET_VERSION + "-" + Plugin.JETTY6_VERSION);
+    }
+    
+    // Archives specific to each version of Jetty
     if (Plugin.ATTR_JETTY6.equals(version)) {
 	    addRelativeArchiveEntry(entries, installUrl, "runjettyrun-bootstrap-jetty6");
 	    addRelativeArchiveEntry(entries, installUrl, "jetty-"
@@ -113,8 +118,30 @@ public class JettyLaunchConfigurationClassPathProvider extends
 	        + Plugin.JETTY7_VERSION);
 	    addRelativeArchiveEntry(entries, installUrl, "jetty-io-"
 	        + Plugin.JETTY7_VERSION);
-	    addRelativeArchiveEntry(entries, installUrl, "jetty-jsp-"
-	        + Plugin.JSP_VERSION + "-" + Plugin.JETTY7_VERSION);
+    } else if (Plugin.ATTR_JETTY8.equals(version)) {
+    	addRelativeArchiveEntry(entries, installUrl, "runjettyrun-bootstrap-jetty8");
+    	addRelativeArchiveEntry(entries, installUrl, "servlet-api-"
+    	        + Plugin.SERVLET_3_VERSION);
+	    addRelativeArchiveEntry(entries, installUrl, "jetty-jmx-"
+	        + Plugin.JETTY8_VERSION);
+	    addRelativeArchiveEntry(entries, installUrl, "jetty-xml-"
+	        + Plugin.JETTY8_VERSION);
+	    addRelativeArchiveEntry(entries, installUrl, "jetty-webapp-"
+	        + Plugin.JETTY8_VERSION);
+	    addRelativeArchiveEntry(entries, installUrl, "jetty-util-"
+	        + Plugin.JETTY8_VERSION);
+	    addRelativeArchiveEntry(entries, installUrl, "jetty-servlet-"
+	        + Plugin.JETTY8_VERSION);
+	    addRelativeArchiveEntry(entries, installUrl, "jetty-security-"
+	        + Plugin.JETTY8_VERSION);
+	    addRelativeArchiveEntry(entries, installUrl, "jetty-server-"
+	        + Plugin.JETTY8_VERSION);
+	    addRelativeArchiveEntry(entries, installUrl, "jetty-continuation-"
+	        + Plugin.JETTY8_VERSION);
+	    addRelativeArchiveEntry(entries, installUrl, "jetty-http-"
+	        + Plugin.JETTY8_VERSION);
+	    addRelativeArchiveEntry(entries, installUrl, "jetty-io-"
+	        + Plugin.JETTY8_VERSION);
     } else {
     	System.out.println("ATTR_JETTY_VERSION " + version + " is invalid");
     }
