@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="http://github.com/alexwinston/RunJettyRun">
+      RunJettyRun Eclipse plugin
+   </description>
+   <feature url="features/runjettyrun_feature_1.2.5.jar" id="runjettyrun_feature" version="1.2.5">
+      <category name="Jetty Integration"/>
+   </feature>
+   <category-def name="Jetty Integration" label="Jetty Integration"/>
+</site> 
