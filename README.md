@@ -16,7 +16,7 @@ Features
 
 Update Site
 ------------
-- [http://alexwinston.github.com/RunJettyRun/update](http://alexwinston.github.com/RunJettyRun/update)
+- [http://alexwinston.github.com/RunJettyRun/site/update](http://alexwinston.github.com/RunJettyRun/update)
 
 Quick Start
 ------------
