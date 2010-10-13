@@ -118,6 +118,8 @@ public class JettyLaunchConfigurationClassPathProvider extends
 	        + Plugin.JETTY7_VERSION);
 	    addRelativeArchiveEntry(entries, installUrl, "jetty-io-"
 	        + Plugin.JETTY7_VERSION);
+	    addRelativeArchiveEntry(entries, installUrl, "jetty-websocket-"
+		    + Plugin.JETTY7_VERSION);
     } else if (Plugin.ATTR_JETTY8.equals(version)) {
     	addRelativeArchiveEntry(entries, installUrl, "runjettyrun-bootstrap-jetty8");
     	addRelativeArchiveEntry(entries, installUrl, "servlet-api-"
@@ -142,6 +144,8 @@ public class JettyLaunchConfigurationClassPathProvider extends
 	        + Plugin.JETTY8_VERSION);
 	    addRelativeArchiveEntry(entries, installUrl, "jetty-io-"
 	        + Plugin.JETTY8_VERSION);
+	    addRelativeArchiveEntry(entries, installUrl, "jetty-websocket-"
+		    + Plugin.JETTY8_VERSION);
     } else {
     	System.out.println("ATTR_JETTY_VERSION " + version + " is invalid");
     }

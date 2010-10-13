@@ -9,12 +9,13 @@
     <packaging>pom</packaging>
 
     <properties>
-        <runjettyrun-version>1.2.5</runjettyrun-version>
+        <runjettyrun-version>1.2.6</runjettyrun-version>
         <ant-version>1.6.5</ant-version>
         <servlet-version>2.5</servlet-version>
         <jsp-version>2.1</jsp-version>
         <jetty6-version>6.1.14</jetty6-version>
-        <jetty7-version>7.0.1.v20091125</jetty7-version>
+        <!--jetty7-version>7.0.1.v20091125</jetty7-version-->
+        <jetty7-version>7.1.6.v20100715</jetty7-version>
         <jetty8-version>8.0.0.M1</jetty8-version>
     </properties>
     <version>${runjettyrun-version}</version>

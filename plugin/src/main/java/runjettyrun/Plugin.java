@@ -60,7 +60,7 @@ public class Plugin extends AbstractUIPlugin {
 	public static final String SERVLET_3_VERSION = "3.0.20100224";
 	public static final String JSP_VERSION = "2.1";
 	public static final String JETTY6_VERSION = "6.1.14";
-	public static final String JETTY7_VERSION = "7.0.1.v20091125"; //"7.1.0.v20100505";
+	public static final String JETTY7_VERSION = "7.1.6.v20100715";
 	public static final String JETTY8_VERSION = "8.0.0.M1";
 
 	// The shared instance
